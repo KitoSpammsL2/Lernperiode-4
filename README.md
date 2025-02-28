@@ -20,7 +20,7 @@ Ich möchte ein Schachspiel programmieren. Ich weiss nicht, ob es zu schwierig i
 
 ## 21.2: Explorativer Wegwerf-Prototyp
 
-- [ ] pen and paper
+- [x] pen and paper
 - [ ] Neuses Schachbrett
 - [ ] Neue Figuren
 - [ ] Die ersten Spielfunktienonen vermutlich den Bauern
@@ -31,7 +31,14 @@ Ich möchte ein Schachspiel programmieren. Ich weiss nicht, ob es zu schwierig i
 
 ## 28.2: Kern-Funktionalität
 
+Aus irgendeinem Grund wurde mein letzter GitHub-Eintrag nicht gespeichert. Heute habe ich ein Feld erstellt, was ziemlich aufwendig war, weil ich es aus 64 Buttons gemacht habe und jeden Button einzeln benannt habe. Das hat ziemlich lange gedauert. Meine Idee ist es, Bilder in die Buttons einzufügen und dann die Bilder von Button zu Button zu verschieben, um die Schachfiguren zu bewegen. Ich habe die Bilder jetzt im Ressourcen-Explorer, aber irgendwie konnte ich sie nicht in den Button einfügen. Ich habe versucht, eine MessageBox anzuzeigen, wenn das Bild eingefügt wurde, und die MessageBox ist auch erschienen, aber das Bild war nicht auf dem Button sichtbar, und daran bin ich gescheitert.
+
 ## 7.3: Kern-Funktionalität
+
+- [ ] Bauern als Bild einfügen
+- [ ] Der Bauer kann vorwärs gehen
+- [ ] Der Bauer kann andere Bauern Schlagen
+- [ ] Die restlichen Figuren als Bilder Hinzufügen
 
 ## 14.3: Architektur ausbauen
 
