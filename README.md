@@ -35,12 +35,21 @@ Aus irgendeinem Grund wurde mein letzter GitHub-Eintrag nicht gespeichert. Heute
 
 ## 7.3: Kern-Funktionalität
 
-- [ ] Bauern als Bild einfügen
-- [ ] Der Bauer kann vorwärs gehen
+- [x] Bauern als Bild einfügen
+- [x] Der Bauer kann vorwärs gehen
 - [ ] Der Bauer kann andere Bauern Schlagen
 - [ ] Die restlichen Figuren als Bilder Hinzufügen
 
+Ich habe heute die schwarzen und die weißen Bauern in das Schachbrett eingefügt. Sie können beim ersten Zug zwei Felder gehen und danach nur ein Feld. Allerdings kann er noch nicht schlagen. Das ist ein wenig schwieriger, als ich gedacht habe.
+
 ## 14.3: Architektur ausbauen
+
+- [ ] Der Bauer kann andere Bauern Schlagen
+- [ ] Den Turm einfügen
+- [ ] Der Turm kann Horizontal und Vertikal fahren
+- [ ] Der Turm kann eine andere Figur schlagen.
+
+
 
 ## 21.3: Architektur ausbauen
 
