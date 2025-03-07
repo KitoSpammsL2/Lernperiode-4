@@ -10,10 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\pawn-white-chess-piece-11532856224alv1lwm9ml.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Remove="Resources\pawn-white-chess-piece-11532856224alv1lwm9ml.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\pawn-white-chess-piece-11532856224alv1lwm9ml.png" />
   </ItemGroup>
 
   <ItemGroup>

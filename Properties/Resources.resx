@@ -117,8 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="white_pawn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pawn-white-chess-piece-11532856224alv1lwm9ml.png;System.Drawing.Icon</value>
-  </data>
 </root>

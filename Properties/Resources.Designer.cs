@@ -33,44 +33,6 @@ namespace TheFinalChess.Properties {
         internal Resources() {
         }
 
-        public static Image white_pawn { get; internal set; }
-
-        /// <summary>
-        ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheFinalChess.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp;
-                }
-                return resourceMan;
-            }
-        }
-        
-        /// <summary>
-        ///   Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
-        ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
-        /// </summary>
-        internal static byte[] white_pawn1 {
-            get {
-                object obj = ResourceManager.GetObject("white_pawn", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
+       
     }
 }

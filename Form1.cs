@@ -1,104 +1,148 @@
-﻿namespace Chess
-{
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
-    public class Form1 : Form
+namespace TheFinalChess
+{
+    public partial class Form1 : Form
     {
-        private const int tileSize = 60;
-        private const int gridSize = 8;
-        private Button[,] boardButtons = new Button[gridSize, gridSize];
-        private string[,] boardState = new string[gridSize, gridSize]; // Speichert den Zustand der Figuren
+        private Button selectedButton = null; // Speichert den Button mit dem Bauern
+        private Image whitePawnImage;
+        private Image blackPawnImage;
 
         public Form1()
         {
-            this.Text = "Schachbrett";
-            this.ClientSize = new Size(gridSize * tileSize, gridSize * tileSize);
-            InitializeBoard();
-            InitializePieces();
-        }
+            InitializeComponent();
+            whitePawnImage = Image.FromFile(@"C:\Users\kaito\source\repos\TheFinalChess\TheFinalChess\Resources\pawn-white-chess-piece-11532856224alv1lwm9ml.png");
+            blackPawnImage = Image.FromFile(@"C:\Users\kaito\source\repos\TheFinalChess\TheFinalChess\Resources\awn-chess-piece-pawn-chess-piece-transparent-11563391176oxnhiiocwr.png");
 
-        
-        private void InitializeBoard()
-        {
-            for (int row = 0; row < gridSize; row++)
+            // Bauern setzen
+            PlacePawns();
+
+            // Click-Event für alle Buttons
+            foreach (Control control in this.Controls)
             {
-                for (int col = 0; col < gridSize; col++)
+                if (control is Button button)
                 {
-                    Button button = new Button
-                    {
-                        Size = new Size(tileSize, tileSize),
-                        Location = new Point(col * tileSize, row * tileSize),
-                        BackColor = (row + col) % 2 == 0 ? Color.White : Color.Brown,
-                        Tag = new Point(row, col) 
-                    };
-
-                    
-                    button.Click += BoardButton_Click;
-
-                    boardButtons[row, col] = button;
-                    this.Controls.Add(button);
+                    button.Click += Button_Click;
                 }
             }
         }
 
-        private void InitializePieces()
+        private void PlacePawns()
         {
-            for (int col = 0; col < gridSize; col++)
+            char[] columns = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+
+            // Weiße Bauern (2. Reihe)
+            foreach (char col in columns)
             {
-                boardState[1, col] = "♙"; // Weiße Bauern 
-                boardState[6, col] = "♟"; // Schwarze Bauern 
+                string buttonName = $"btn{col}2";
+                Button btn = this.Controls.Find(buttonName, true)[0] as Button;
+                btn.BackgroundImage = whitePawnImage;
+                btn.Tag = "white"; // Markiert als weißer Bauer
+                btn.BackgroundImageLayout = ImageLayout.Stretch;
             }
 
-            boardState[0, 0] = boardState[0, 7] = "♖"; // Weiße Türme
-            boardState[0, 1] = boardState[0, 6] = "♘"; // Weiße Springer
-            boardState[0, 2] = boardState[0, 5] = "♗"; // Weiße Läufer
-            boardState[0, 3] = "♕"; // Weiße Dame
-            boardState[0, 4] = "♔"; // Weißer König
-
-            boardState[7, 0] = boardState[7, 7] = "♜"; // Schwarze Türme
-            boardState[7, 1] = boardState[7, 6] = "♞"; // Schwarze Springer
-            boardState[7, 2] = boardState[7, 5] = "♝"; // Schwarze Läufer
-            boardState[7, 3] = "♛"; // Schwarze Dame
-            boardState[7, 4] = "♚"; // Schwarzer König
-
-            UpdateBoard();
-        }
-
-      
-        private void UpdateBoard()
-        {
-            for (int row = 0; row < gridSize; row++)
+            // Schwarze Bauern (7. Reihe)
+            foreach (char col in columns)
             {
-                for (int col = 0; col < gridSize; col++)
-                {
-                    Button button = boardButtons[row, col];
-                    string piece = boardState[row, col];
-
-                    if (!string.IsNullOrEmpty(piece))
-                    {
-                        button.Text = piece; // Setze das Symbol auf das Button
-                        button.ForeColor = char.IsUpper(piece[0]) ? Color.White : Color.Black; // Bestimme die Farbe der Schrift
-                    }
-                    else
-                    {
-                        button.Text = string.Empty; // Kein Symbol auf dem Feld
-                    }
-                }
+                string buttonName = $"btn{col}7";
+                Button btn = this.Controls.Find(buttonName, true)[0] as Button;
+                btn.BackgroundImage = blackPawnImage;
+                btn.Tag = "black"; // Markiert als schwarzer Bauer
+                btn.BackgroundImageLayout = ImageLayout.Stretch;
             }
         }
 
-      
-        private void BoardButton_Click(object sender, EventArgs e)
+        private void Button_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-            Point position = (Point)clickedButton.Tag;
 
-           
-            MessageBox.Show($"Feld: {position.X}, {position.Y}, Figur: {boardState[position.X, position.Y]}");
+            if (clickedButton.BackgroundImage != null)
+            {
+                selectedButton = clickedButton; // Figur auswählen
+            }
+            else if (selectedButton != null)
+            {
+                MovePawn(selectedButton, clickedButton);
+                selectedButton = null;
+            }
         }
 
-    
+        private void MovePawn(Button from, Button to)
+        {
+            string fromName = from.Name;
+            string toName = to.Name;
+
+            // Konvertiere die Spalte (A, B, C...) in eine Zahl (0, 1, 2...)
+            int colFrom = fromName[3] - 'A';
+            int rowFrom = int.Parse(fromName[4].ToString());
+            int colTo = toName[3] - 'A';
+            int rowTo = int.Parse(toName[4].ToString());
+
+            bool isCapture = to.BackgroundImage != null;
+            string pawnColor = from.Tag.ToString();
+
+            // Bewegung nach oben für weiße Bauern
+            if (pawnColor == "white")
+            {
+                // Normale Bewegung
+                if (IsValidPawnMove(rowFrom, rowTo, colFrom, colTo, isCapture, 2, 1))
+                {
+                    MovePiece(from, to, pawnColor);
+                }
+                // Diagonal schlagen
+                else if (isCapture && Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom + 1 && to.Tag.ToString() == "black")
+                {
+                    MovePiece(from, to, pawnColor);
+                }
+            }
+            // Bewegung nach unten für schwarze Bauern
+            else if (pawnColor == "black")
+            {
+                // Normale Bewegung
+                if (IsValidPawnMove(rowFrom, rowTo, colFrom, colTo, isCapture, -2, -1))
+                {
+                    MovePiece(from, to, pawnColor);
+                }
+                // Diagonal schlagen
+                else if (isCapture && Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom - 1 && to.Tag.ToString() == "white")
+                {
+                    MovePiece(from, to, pawnColor);
+                }
+            }
+        }
+
+        private bool IsValidPawnMove(int rowFrom, int rowTo, int colFrom, int colTo, bool isCapture, int firstMoveStep, int normalMoveStep)
+        {
+            // Gerade nach vorne (kein Schlagen)
+            if (colFrom == colTo && !isCapture)
+            {
+                if (rowTo == rowFrom + normalMoveStep)
+                {
+                    return true;
+                }
+                if ((rowFrom == 2 || rowFrom == 7) && rowTo == rowFrom + firstMoveStep)
+                {
+                    return true;
+                }
+            }
+            // Diagonal schlagen
+            else if (Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom + normalMoveStep && isCapture)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void MovePiece(Button from, Button to, string pawnColor)
+        {
+            to.BackgroundImage = from.BackgroundImage;
+            to.BackgroundImageLayout = ImageLayout.Stretch;
+            to.Tag = pawnColor;
+            from.BackgroundImage = null;
+            from.Tag = null;
+        }
     }
 }
