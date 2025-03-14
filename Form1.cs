@@ -6,20 +6,21 @@ namespace TheFinalChess
 {
     public partial class Form1 : Form
     {
-        private Button selectedButton = null; // Speichert den Button mit dem Bauern
-        private Image whitePawnImage;
-        private Image blackPawnImage;
+        private Button selectedButton = null;
+        private Image whitePawnImage, blackPawnImage;
+        private Image whiteRookImage, blackRookImage;
 
         public Form1()
         {
             InitializeComponent();
             whitePawnImage = Image.FromFile(@"C:\Users\kaito\source\repos\TheFinalChess\TheFinalChess\Resources\pawn-white-chess-piece-11532856224alv1lwm9ml.png");
             blackPawnImage = Image.FromFile(@"C:\Users\kaito\source\repos\TheFinalChess\TheFinalChess\Resources\awn-chess-piece-pawn-chess-piece-transparent-11563391176oxnhiiocwr.png");
+            whiteRookImage = Image.FromFile(@"C:\Users\kaito\source\repos\TheFinalChess\TheFinalChess\Resources\rook-white-chess-piece-11532860352fgkrs0cewb.png");
+            blackRookImage = Image.FromFile(@"C:\Users\kaito\source\repos\TheFinalChess\TheFinalChess\Resources\rook-black-chess-piece-11532860333ghjtvpbqyh.png");
 
-            // Bauern setzen
             PlacePawns();
+            PlaceRooks();
 
-            // Click-Event für alle Buttons
             foreach (Control control in this.Controls)
             {
                 if (control is Button button)
@@ -33,23 +34,42 @@ namespace TheFinalChess
         {
             char[] columns = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
 
-            // Weiße Bauern (2. Reihe)
             foreach (char col in columns)
             {
-                string buttonName = $"btn{col}2";
-                Button btn = this.Controls.Find(buttonName, true)[0] as Button;
-                btn.BackgroundImage = whitePawnImage;
-                btn.Tag = "white"; // Markiert als weißer Bauer
+                string whiteButtonName = $"btn{col}2";
+                string blackButtonName = $"btn{col}7";
+
+                Button whiteBtn = this.Controls.Find(whiteButtonName, true)[0] as Button;
+                Button blackBtn = this.Controls.Find(blackButtonName, true)[0] as Button;
+
+                whiteBtn.BackgroundImage = whitePawnImage;
+                whiteBtn.Tag = "whitePawn";
+                whiteBtn.BackgroundImageLayout = ImageLayout.Stretch;
+
+                blackBtn.BackgroundImage = blackPawnImage;
+                blackBtn.Tag = "blackPawn";
+                blackBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
+
+        private void PlaceRooks()
+        {
+            string[] whiteRookPositions = { "btnA1", "btnH1" };
+            string[] blackRookPositions = { "btnA8", "btnH8" };
+
+            foreach (string pos in whiteRookPositions)
+            {
+                Button btn = this.Controls.Find(pos, true)[0] as Button;
+                btn.BackgroundImage = whiteRookImage;
+                btn.Tag = "whiteRook";
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
             }
 
-            // Schwarze Bauern (7. Reihe)
-            foreach (char col in columns)
+            foreach (string pos in blackRookPositions)
             {
-                string buttonName = $"btn{col}7";
-                Button btn = this.Controls.Find(buttonName, true)[0] as Button;
-                btn.BackgroundImage = blackPawnImage;
-                btn.Tag = "black"; // Markiert als schwarzer Bauer
+                Button btn = this.Controls.Find(pos, true)[0] as Button;
+                btn.BackgroundImage = blackRookImage;
+                btn.Tag = "blackRook";
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
             }
         }
@@ -60,87 +80,101 @@ namespace TheFinalChess
 
             if (clickedButton.BackgroundImage != null)
             {
-                selectedButton = clickedButton; // Figur auswählen
+                selectedButton = clickedButton;
             }
             else if (selectedButton != null)
             {
-                MovePawn(selectedButton, clickedButton);
+                MovePiece(selectedButton, clickedButton);
                 selectedButton = null;
             }
         }
 
-        private void MovePawn(Button from, Button to)
+        private void MovePiece(Button from, Button to)
+        {
+            string fromTag = from.Tag?.ToString();
+            string toTag = to.Tag?.ToString();
+
+            if (fromTag.Contains("Pawn") && IsValidPawnMove(from, to))
+            {
+                MoveFigure(from, to);
+            }
+            else if (fromTag.Contains("Rook") && IsValidRookMove(from, to))
+            {
+                MoveFigure(from, to);
+            }
+        }
+
+        private bool IsValidPawnMove(Button from, Button to)
         {
             string fromName = from.Name;
             string toName = to.Name;
 
-            // Konvertiere die Spalte (A, B, C...) in eine Zahl (0, 1, 2...)
             int colFrom = fromName[3] - 'A';
             int rowFrom = int.Parse(fromName[4].ToString());
             int colTo = toName[3] - 'A';
             int rowTo = int.Parse(toName[4].ToString());
 
-            bool isCapture = to.BackgroundImage != null;
             string pawnColor = from.Tag.ToString();
+            bool isCapture = to.BackgroundImage != null;
 
-            // Bewegung nach oben für weiße Bauern
-            if (pawnColor == "white")
+            if (pawnColor == "whitePawn")
             {
-                // Normale Bewegung
-                if (IsValidPawnMove(rowFrom, rowTo, colFrom, colTo, isCapture, 2, 1))
+                if (colFrom == colTo && !isCapture)
                 {
-                    MovePiece(from, to, pawnColor);
+                    if (rowFrom == 2 && rowTo == 4)
+                    {
+                        return true;
+                    }
+                    else if (rowTo == rowFrom + 1)
+                    {
+                        return true;
+                    }
                 }
-                // Diagonal schlagen
-                else if (isCapture && Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom + 1 && to.Tag.ToString() == "black")
-                {
-                    MovePiece(from, to, pawnColor);
-                }
-            }
-            // Bewegung nach unten für schwarze Bauern
-            else if (pawnColor == "black")
-            {
-                // Normale Bewegung
-                if (IsValidPawnMove(rowFrom, rowTo, colFrom, colTo, isCapture, -2, -1))
-                {
-                    MovePiece(from, to, pawnColor);
-                }
-                // Diagonal schlagen
-                else if (isCapture && Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom - 1 && to.Tag.ToString() == "white")
-                {
-                    MovePiece(from, to, pawnColor);
-                }
-            }
-        }
-
-        private bool IsValidPawnMove(int rowFrom, int rowTo, int colFrom, int colTo, bool isCapture, int firstMoveStep, int normalMoveStep)
-        {
-            // Gerade nach vorne (kein Schlagen)
-            if (colFrom == colTo && !isCapture)
-            {
-                if (rowTo == rowFrom + normalMoveStep)
-                {
-                    return true;
-                }
-                if ((rowFrom == 2 || rowFrom == 7) && rowTo == rowFrom + firstMoveStep)
+                else if (isCapture && Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom + 1)
                 {
                     return true;
                 }
             }
-            // Diagonal schlagen
-            else if (Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom + normalMoveStep && isCapture)
+            else if (pawnColor == "blackPawn")
             {
-                return true;
+                if (colFrom == colTo && !isCapture)
+                {
+                    if (rowFrom == 7 && rowTo == 5)
+                    {
+                        return true;
+                    }
+                    else if (rowTo == rowFrom - 1)
+                    {
+                        return true;
+                    }
+                }
+                else if (isCapture && Math.Abs(colFrom - colTo) == 1 && rowTo == rowFrom - 1)
+                {
+                    return true;
+                }
             }
 
             return false;
         }
 
-        private void MovePiece(Button from, Button to, string pawnColor)
+        private bool IsValidRookMove(Button from, Button to)
+        {
+            string fromName = from.Name;
+            string toName = to.Name;
+
+            int colFrom = fromName[3] - 'A';
+            int rowFrom = int.Parse(fromName[4].ToString());
+            int colTo = toName[3] - 'A';
+            int rowTo = int.Parse(toName[4].ToString());
+
+            return colFrom == colTo || rowFrom == rowTo;
+        }
+
+        private void MoveFigure(Button from, Button to)
         {
             to.BackgroundImage = from.BackgroundImage;
             to.BackgroundImageLayout = ImageLayout.Stretch;
-            to.Tag = pawnColor;
+            to.Tag = from.Tag;
             from.BackgroundImage = null;
             from.Tag = null;
         }
