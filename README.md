@@ -45,13 +45,18 @@ Ich habe heute die schwarzen und die weißen Bauern in das Schachbrett eingefüg
 ## 14.3: Architektur ausbauen
 
 - [ ] Der Bauer kann andere Bauern Schlagen
-- [ ] Den Turm einfügen
-- [ ] Der Turm kann Horizontal und Vertikal fahren
+- [x] Den Turm einfügen
+- [x] Der Turm kann Horizontal und Vertikal fahren
 - [ ] Der Turm kann eine andere Figur schlagen.
 
-
-
+      
+Ich habe versucht, dass die Figuren schlagen können, aber es funktioniert nicht. Ich habe außerdem den Turm eingeführt, und er kann jetzt ziehen, allerdings noch nicht schlagen. Ich weiß noch nicht, warum das so ist. Beim nächsten Mal werde ich es mir genauer anschauen und versuchen, das Schlagen der Figuren zu ermöglichen.
 ## 21.3: Architektur ausbauen
+
+- [ ] Der Turm kann eine andere Figur schlagen.
+- [ ] Der Bauer kann andere Bauern Schlagen
+- [ ] Den König einfügen
+- [ ] Der König kann in alle richtungen schlagen
 
 ## 28.3: Auspolieren
 
