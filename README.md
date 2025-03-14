@@ -56,7 +56,7 @@ Ich habe versucht, dass die Figuren schlagen können, aber es funktioniert nicht
 - [ ] Der Turm kann eine andere Figur schlagen.
 - [ ] Der Bauer kann andere Bauern Schlagen
 - [ ] Den König einfügen
-- [ ] Der König kann in alle richtungen schlagen
+- [ ] Der König kann in alle richtungen fahren.
 
 ## 28.3: Auspolieren
 
