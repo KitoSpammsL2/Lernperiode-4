@@ -47,17 +47,25 @@ Ich habe heute die schwarzen und die weißen Bauern in das Schachbrett eingefüg
 - [ ] Der Bauer kann andere Bauern Schlagen
 - [x] Den Turm einfügen
 - [x] Der Turm kann Horizontal und Vertikal fahren
-- [ ] Der Turm kann eine andere Figur schlagen.
+- [x] Die Züge sind abwechselnd.
 
       
 Ich habe versucht, dass die Figuren schlagen können, aber es funktioniert nicht. Ich habe außerdem den Turm eingeführt, und er kann jetzt ziehen, allerdings noch nicht schlagen. Ich weiß noch nicht, warum das so ist. Beim nächsten Mal werde ich es mir genauer anschauen und versuchen, das Schlagen der Figuren zu ermöglichen.
 ## 21.3: Architektur ausbauen
 
-- [ ] Der Turm kann eine andere Figur schlagen.
-- [ ] Der Bauer kann andere Bauern Schlagen
-- [ ] Den König einfügen
-- [ ] Der König kann in alle richtungen fahren.
+- [ ] Der Bauer kann eine andere Figur schlagen.
+- [x] Ein volles Schachbrett haben.
+- [x] Den Läufer einfügen
+- [x] Der Läufer kann diagonal fahren.
+
+Ich habe heute die anderen Figuren auf das Schachbrett eingefügt und die Mechanik für den Läufer hinzugefügt, sodass er jetzt diagonal ziehen kann. Das Schlagen funktioniert jedoch immer noch nicht. Ich habe jetzt den Grund dafür herausgefunden: Das Programm denkt, dass ich mit einem weißen Bauern auf einen schwarzen Bauern klicke, um diesen zu bewegen, anstatt ihn zu schlagen.
 
 ## 28.3: Auspolieren
+
+- [ ] Der König kann ziehen.
+- [ ] die Königin kann ziehen.
+- [ ] Ich habe herausgefunden, wie das Programm nicht denkt, dass ich die Figur ziehen möchte, sondern schlagen.
+- [ ] Der Springer kann ziehen.
+
 
 ## 4.4: Auspolieren & Abschluss
