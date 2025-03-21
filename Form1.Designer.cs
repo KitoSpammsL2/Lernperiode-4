@@ -283,6 +283,7 @@
             btnA1.TabIndex = 56;
             btnA1.Text = "A1";
             btnA1.UseVisualStyleBackColor = true;
+            btnA1.Click += Button_Click;
             // 
             // btnH2
             // 
@@ -882,6 +883,7 @@
             btnF8.TabIndex = 6;
             btnF8.Text = "F8";
             btnF8.UseVisualStyleBackColor = true;
+            btnF8.Click += Button_Click;
             // 
             // btnE8
             // 
