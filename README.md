@@ -62,10 +62,19 @@ Ich habe heute die anderen Figuren auf das Schachbrett eingefügt und die Mechan
 
 ## 28.3: Auspolieren
 
-- [ ] Der König kann ziehen.
-- [ ] die Königin kann ziehen.
-- [ ] Ich habe herausgefunden, wie das Programm nicht denkt, dass ich die Figur ziehen möchte, sondern schlagen.
-- [ ] Der Springer kann ziehen.
+- [x] Der König kann ziehen.
+- [x] die Königin kann ziehen.
+- [x] Ich habe herausgefunden, wie das Programm nicht denkt, dass ich die Figur ziehen möchte, sondern schlagen.
+- [x] Der Springer kann ziehen.
+
+Heute war ein richtig guter Tag, weil ich mein Schachspiel fast fertiggestellt habe. Endlich habe ich es geschafft, dass meine Figuren andere Figuren schlagen können. Allerdings fehlt mir noch eine Funktion für den Bauern, und ich möchte das Schachbrett noch schöner gestalten.
 
 
 ## 4.4: Auspolieren & Abschluss
+
+- [ ] Schachbrett schöner machen(Felder mit richtigen Farben und die Zeichen weg machen)
+- [ ] Bauer kann sich in andere Figuren verwandeln wenn er an die andere seite kommt. 
+
+
+
+
