@@ -38,6 +38,8 @@ namespace TheFinalChess
             PlaceQueens();
             PlaceKings();
 
+           
+
             foreach (Control control in this.Controls)
             {
                 if (control is Button button)
@@ -45,8 +47,7 @@ namespace TheFinalChess
                     button.Click += Button_Click;
                 }
             }
-        }
-
+        }        
         private void PlaceKnights()
         {
             string[] whiteKnightPositions = { "btnB1", "btnG1" };
@@ -58,9 +59,6 @@ namespace TheFinalChess
             foreach (string pos in blackKnightPositions)
                 PlacePiece(pos, blackKnightImage, "blackKnight");
         }
-
-
-
         private void PlaceQueens()
         {
             PlacePiece("btnD1", whiteQueenImage, "whiteQueen");
@@ -151,7 +149,7 @@ namespace TheFinalChess
         }
 
 
-        private string currentPlayer = "white"; 
+        private string currentPlayer = "white";
 
         private void Button_Click(object sender, EventArgs e)
         {
@@ -159,25 +157,54 @@ namespace TheFinalChess
 
             if (clickedButton.BackgroundImage != null)
             {
-              
-                if (IsCorrectPlayer(clickedButton))
+                if (selectedButton == null)
                 {
-                    selectedButton = clickedButton;
+                    if (IsCorrectPlayer(clickedButton))
+                    {
+                        selectedButton = clickedButton;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Es ist nicht deine Runde!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Es ist nicht deine Runde!");
+                    if (IsEnemyPiece(clickedButton))
+                    {
+                        MovePiece(selectedButton, clickedButton);
+                        SwitchPlayer();
+                        selectedButton = null;
+                    }
+                    else
+                    {
+                        if (IsCorrectPlayer(clickedButton))
+                        {
+                            selectedButton = clickedButton;
+                        }
+                    }
                 }
             }
             else if (selectedButton != null)
-            {
-              
+            {             
                 MovePiece(selectedButton, clickedButton);
-              
                 SwitchPlayer();
                 selectedButton = null;
             }
         }
+
+        private bool IsEnemyPiece(Button button)
+        {
+            if (button.Tag == null || selectedButton == null) return false;
+
+            string selectedTag = selectedButton.Tag.ToString();
+            string clickedTag = button.Tag.ToString();
+
+            return (selectedTag.Contains("white") && clickedTag.Contains("black")) ||
+                   (selectedTag.Contains("black") && clickedTag.Contains("white"));
+        }
+
+
 
         private bool IsCorrectPlayer(Button button)
         {
@@ -204,34 +231,38 @@ namespace TheFinalChess
             string fromTag = from.Tag?.ToString();
             string toTag = to.Tag?.ToString();
 
-          
-            if (fromTag.Contains("Pawn") && IsValidPawnMove(from, to))
+            if (fromTag.Contains("Pawn") && IsValidPawnMove(from, to) ||
+                fromTag.Contains("Rook") && IsValidRookMove(from, to) ||
+                fromTag.Contains("Bishop") && IsValidBishopMove(from, to) ||
+                fromTag.Contains("Knight") && IsValidKnightMove(from, to) ||
+                fromTag.Contains("Queen") && IsValidQueenMove(from, to) ||
+                fromTag.Contains("King") && IsValidKingMove(from, to))
             {
-                
-                if (to.BackgroundImage != null)
+                if (toTag != null && toTag.Contains("King"))
                 {
-                
-                    to.BackgroundImage = null;
-                    to.Tag = null;
+                    MessageBox.Show($"{currentPlayer} gewinnt! Spiel vorbei.");
+                    Application.Exit();
                 }
-
-                
                 MoveFigure(from, to);
             }
-        
-            else if (fromTag.Contains("Rook") && IsValidRookMove(from, to))
-            {
-                MoveFigure(from, to);
-            }
-            else if (fromTag.Contains("Bishop") && IsValidBishopMove(from, to))
-            {
-                MoveFigure(from, to);
-            }
-           
         }
 
+        private bool IsValidKingMove(Button from, Button to)
+        {
+            string fromName = from.Name;
+            string toName = to.Name;
 
+            int colFrom = fromName[3] - 'A';
+            int rowFrom = int.Parse(fromName[4].ToString());
+            int colTo = toName[3] - 'A';
+            int rowTo = int.Parse(toName[4].ToString());
 
+            return Math.Abs(colFrom - colTo) <= 1 && Math.Abs(rowFrom - rowTo) <= 1;
+        }
+        private bool IsValidQueenMove(Button from, Button to)
+        {
+            return IsValidRookMove(from, to) || IsValidBishopMove(from, to);
+        }
 
         private bool IsValidPawnMove(Button from, Button to)
         {
@@ -302,12 +333,28 @@ namespace TheFinalChess
             return false;
         }
 
-
-        private bool IsValidRookMove(Button from, Button to)
+        private bool IsValidKnightMove(Button from, Button to)
         {
             string fromName = from.Name;
             string toName = to.Name;
 
+            int colFrom = fromName[3] - 'A';
+            int rowFrom = int.Parse(fromName[4].ToString());
+            int colTo = toName[3] - 'A';
+            int rowTo = int.Parse(toName[4].ToString());
+
+            int colDiff = Math.Abs(colFrom - colTo);
+            int rowDiff = Math.Abs(rowFrom - rowTo);
+
+            return (colDiff == 2 && rowDiff == 1) || (colDiff == 1 && rowDiff == 2);
+        }
+
+        private bool IsValidRookMove(Button from, Button to)
+        {
+            if (!IsPathClear(from, to)) return false;
+
+            string fromName = from.Name;
+            string toName = to.Name;
             int colFrom = fromName[3] - 'A';
             int rowFrom = int.Parse(fromName[4].ToString());
             int colTo = toName[3] - 'A';
@@ -315,18 +362,46 @@ namespace TheFinalChess
 
             return colFrom == colTo || rowFrom == rowTo;
         }
-
         private bool IsValidBishopMove(Button from, Button to)
         {
+            if (!IsPathClear(from, to)) return false;
+
             string fromName = from.Name;
             string toName = to.Name;
-
             int colFrom = fromName[3] - 'A';
             int rowFrom = int.Parse(fromName[4].ToString());
             int colTo = toName[3] - 'A';
             int rowTo = int.Parse(toName[4].ToString());
 
             return Math.Abs(colFrom - colTo) == Math.Abs(rowFrom - rowTo);
+        }
+        private bool IsPathClear(Button from, Button to)
+        {
+            string fromName = from.Name;
+            string toName = to.Name;
+            int colFrom = fromName[3] - 'A';
+            int rowFrom = int.Parse(fromName[4].ToString());
+            int colTo = toName[3] - 'A';
+            int rowTo = int.Parse(toName[4].ToString());
+
+            int colStep = colFrom == colTo ? 0 : (colTo > colFrom ? 1 : -1);
+            int rowStep = rowFrom == rowTo ? 0 : (rowTo > rowFrom ? 1 : -1);
+
+            int col = colFrom + colStep;
+            int row = rowFrom + rowStep;
+
+            while (col != colTo || row != rowTo)
+            {
+                string position = $"btn{(char)('A' + col)}{row}";
+                Button btn = this.Controls.Find(position, true).FirstOrDefault() as Button;
+                if (btn != null && btn.BackgroundImage != null)
+                {
+                    return false;
+                }
+                col += colStep;
+                row += rowStep;
+            }
+            return true;
         }
 
         private void MoveFigure(Button from, Button to)
