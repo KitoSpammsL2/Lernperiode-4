@@ -75,6 +75,16 @@ Heute war ein richtig guter Tag, weil ich mein Schachspiel fast fertiggestellt h
 - [ ] Schachbrett schöner machen(Felder mit richtigen Farben und die Zeichen weg machen)
 - [ ] Bauer kann sich in andere Figuren verwandeln wenn er an die andere seite kommt. 
 
+Heute war ein schlechter Tag, da ich keines der Arbeitspakete geschafft habe. Zuerst habe ich das ganze Schachfeld in Beige und Braun gemacht, nur um dann zu merken, dass WinForms irgendwie die PNG-Funktionen nicht richtig akzeptiert. Zumindest hat es bei mir nicht funktioniert, also musste ich jedes einzelne Feld wieder ändern.
 
+![Screenshot 2025-04-04 0708](https://github.com/user-attachments/assets/2e8e2319-e614-417a-b59b-f76563e23e38) ![Screenshot 2025-04-04 091709](https://github.com/user-attachments/assets/638b7c78-eb57-48b3-82e5-eec9358fdc8a)
+
+
+## Reflexion
+
+Das Schachprojekt hat sehr viel SpaSS gemacht und war ziemlich schwer. Leider bin ich noch nicht fertig geworden, aber ich habe die meisten Funktionen eines Schachspiels hinbekommen. Einige Dinge waren jedoch zu schwierig, und ich wusste nicht, wie ich sie umsetzen sollte, wie zum Beispiel die Verwandlung des Bauern am Ende in eine andere Figur. Ich vermute, ich hatte einfach zu wenig Zeit, da ich zu Beginn Schwierigkeiten hatte, das Schachspiel richtig umzusetzen. Nach einer Weile habe ich jedoch einen guten Flow gefunden und bin schnell vorangekommen. Jetzt bin ich jedoch wieder an einem Punkt, der knifflig ist. Ich möchte das Schachspiel in der nächsten Lernperiode fertigstellen und perfektionieren, da noch einige Dinge zu tun sind. Ich möchte euch jetzt noch mit ein paar Screenshots zeigen, was mein Schachspiel bereits kann. Die Grundlagen stehen schon: Ich kann gewinnen, alle meine Figuren können sich bewegen und sie können sich schlagen.
+
+
+![Screenshot 2025-04-04 093618](https://github.com/user-attachments/assets/7b3b91d6-880a-4aba-8314-5b8f0f54cb23)
 
 
