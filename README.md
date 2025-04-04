@@ -1,7 +1,9 @@
 
 # Lern-Periode 4
 
-14.2 bis 4.4
+## Schach 
+
+In dieser Lernperiode werden Sie sehen, wie ich in acht Wochen versucht habe, ein Schachspiel zu programmieren. Sie können nachverfolgen, wo und wie ich mich in diesen acht Wochen verbessert habe, was mir schwergefallen ist und was leicht gefallen ist.
 
 ## Grob-Planung
 
@@ -82,7 +84,7 @@ Heute war ein schlechter Tag, da ich keines der Arbeitspakete geschafft habe. Zu
 
 ## Reflexion
 
-Das Schachprojekt hat sehr viel SpaSS gemacht und war ziemlich schwer. Leider bin ich noch nicht fertig geworden, aber ich habe die meisten Funktionen eines Schachspiels hinbekommen. Einige Dinge waren jedoch zu schwierig, und ich wusste nicht, wie ich sie umsetzen sollte, wie zum Beispiel die Verwandlung des Bauern am Ende in eine andere Figur. Ich vermute, ich hatte einfach zu wenig Zeit, da ich zu Beginn Schwierigkeiten hatte, das Schachspiel richtig umzusetzen. Nach einer Weile habe ich jedoch einen guten Flow gefunden und bin schnell vorangekommen. Jetzt bin ich jedoch wieder an einem Punkt, der knifflig ist. Ich möchte das Schachspiel in der nächsten Lernperiode fertigstellen und perfektionieren, da noch einige Dinge zu tun sind. Ich möchte euch jetzt noch mit ein paar Screenshots zeigen, was mein Schachspiel bereits kann. Die Grundlagen stehen schon: Ich kann gewinnen, alle meine Figuren können sich bewegen und sie können sich schlagen.
+Das Schachprojekt hat sehr viel Spass gemacht und war ziemlich schwer. Leider bin ich noch nicht fertig geworden, aber ich habe die meisten Funktionen eines Schachspiels hinbekommen. Einige Dinge waren jedoch zu schwierig, und ich wusste nicht, wie ich sie umsetzen sollte, wie zum Beispiel die Verwandlung des Bauern am Ende in eine andere Figur. Ich vermute, ich hatte einfach zu wenig Zeit, da ich zu Beginn Schwierigkeiten hatte, das Schachspiel richtig umzusetzen. Nach einer Weile habe ich jedoch einen guten Flow gefunden und bin schnell vorangekommen. Jetzt bin ich jedoch wieder an einem Punkt, der knifflig ist. Ich möchte das Schachspiel in der nächsten Lernperiode fertigstellen und perfektionieren, da noch einige Dinge zu tun sind. Ich möchte euch jetzt noch mit ein paar Screenshots zeigen, was mein Schachspiel bereits kann. Die Grundlagen stehen schon: Ich kann gewinnen, alle meine Figuren können sich bewegen und sie können sich schlagen.
 
 
 ![Screenshot 2025-04-04 093618](https://github.com/user-attachments/assets/7b3b91d6-880a-4aba-8314-5b8f0f54cb23)
