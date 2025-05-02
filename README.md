@@ -16,9 +16,9 @@ Ich möchte ein Schachspiel programmieren. Ich weiss nicht, ob es zu schwierig i
 - [x] Schachbrett 
 - [x] Figuren 
 
-✍️Heute habe ich das Schachbrett und die Figuren erstellt. Allerdings überlege ich, beim nächsten Mal von vorne zu beginnen, da ich nicht sicher bin, ob meine aktuelle Methode funktionieren wird. Es hat zwar sehr lange gedauert, das Brett zu gestalten, aber am Ende hat es doch funktioniert, und ich bin sehr zufrieden mit dem Ergebnis, da es wirklich wie ein Schachbrett aussieht.
+✍Heute habe ich das Schachbrett und die Figuren erstellt. Allerdings überlege ich, beim nächsten Mal von vorne zu beginnen, da ich nicht sicher bin, ob meine aktuelle Methode funktionieren wird. Es hat zwar sehr lange gedauert, das Brett zu gestalten, aber am Ende hat es doch funktioniert, und ich bin sehr zufrieden mit dem Ergebnis, da es wirklich wie ein Schachbrett aussieht.
 
-☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
+
 
 ## 21.2: Explorativer Wegwerf-Prototyp
 
@@ -27,9 +27,7 @@ Ich möchte ein Schachspiel programmieren. Ich weiss nicht, ob es zu schwierig i
 - [ ] Neue Figuren
 - [ ] Die ersten Spielfunktienonen vermutlich den Bauern
 
-✍️ Heute habe ich... (50-100 Wörter)
 
-☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 28.2: Kern-Funktionalität
 
