@@ -19,16 +19,6 @@ Ich möchte ein Schachspiel programmieren. Ich weiss nicht, ob es zu schwierig i
 Heute habe ich das Schachbrett und die Figuren erstellt. Allerdings überlege ich, beim nächsten Mal von vorne zu beginnen, da ich nicht sicher bin, ob meine aktuelle Methode funktionieren wird. Es hat zwar sehr lange gedauert, das Brett zu gestalten, aber am Ende hat es doch funktioniert, und ich bin sehr zufrieden mit dem Ergebnis, da es wirklich wie ein Schachbrett aussieht.
 
 
-
-## 21.2: Explorativer Wegwerf-Prototyp
-
-- [x] pen and paper
-- [ ] Neuses Schachbrett
-- [ ] Neue Figuren
-- [ ] Die ersten Spielfunktienonen vermutlich den Bauern
-
-
-
 ## 28.2: Kern-Funktionalität
 
 Aus irgendeinem Grund wurde mein letzter GitHub-Eintrag nicht gespeichert. Heute habe ich ein Feld erstellt, was ziemlich aufwendig war, weil ich es aus 64 Buttons gemacht habe und jeden Button einzeln benannt habe. Das hat ziemlich lange gedauert. Meine Idee ist es, Bilder in die Buttons einzufügen und dann die Bilder von Button zu Button zu verschieben, um die Schachfiguren zu bewegen. Ich habe die Bilder jetzt im Ressourcen-Explorer, aber irgendwie konnte ich sie nicht in den Button einfügen. Ich habe versucht, eine MessageBox anzuzeigen, wenn das Bild eingefügt wurde, und die MessageBox ist auch erschienen, aber das Bild war nicht auf dem Button sichtbar, und daran bin ich gescheitert.
